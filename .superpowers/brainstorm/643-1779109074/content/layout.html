@@ -1,0 +1,85 @@
+<h2>页面整体布局 — 你偏好哪种风格？</h2>
+<p class="subtitle">考虑日常使用舒适度和信息密度</p>
+
+<div class="cards">
+  <div class="card" data-choice="sidebar" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mockup">
+        <div class="mockup-header">布局 A：左右分栏式</div>
+        <div class="mockup-body">
+          <div style="display:flex;height:240px;overflow:hidden">
+            <div class="mock-sidebar" style="width:160px;flex-shrink:0;display:flex;flex-direction:column;gap:8px;padding:12px">
+              <div class="placeholder" style="height:24px">📋 待办清单</div>
+              <div class="placeholder" style="height:18px;opacity:0.6">工作</div>
+              <div class="placeholder" style="height:18px;opacity:0.6">个人</div>
+              <div class="placeholder" style="height:18px;opacity:0.6">学习</div>
+              <div style="margin-top:auto"><button class="mock-button" style="width:100%">+ 新建分类</button></div>
+            </div>
+            <div class="mock-content" style="flex:1;padding:12px;display:flex;flex-direction:column;gap:8px">
+              <div class="placeholder" style="height:32px">🔍 搜索 + 筛选</div>
+              <div class="placeholder" style="height:48px">☐ 完成待办设计文档 <span style="float:right;color:#f59e0b">中</span></div>
+              <div class="placeholder" style="height:48px">☑ <s>安装开发环境</s></div>
+              <div class="placeholder" style="height:48px">☐ 编写接口测试 <span style="float:right;color:#ef4444">高</span></div>
+              <div class="placeholder" style="height:48px">☐ 部署到服务器 <span style="float:right;color:#10b981">低</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>布局 A：左右分栏式</h3>
+      <p>左侧固定侧边栏放分类和导航，右侧展示任务列表。空间利用充分，适合分类多、任务量大的场景。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="topnav" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mockup">
+        <div class="mockup-header">布局 B：顶部导航式</div>
+        <div class="mockup-body">
+          <div style="display:flex;flex-direction:column;height:240px;overflow:hidden">
+            <div class="mock-nav" style="display:flex;gap:16px;align-items:center;padding:8px 12px">
+              <span>📋 待办清单</span>
+              <span style="opacity:0.5;font-size:13px">工作</span>
+              <span style="opacity:0.5;font-size:13px">个人</span>
+              <span style="opacity:0.5;font-size:13px">学习</span>
+              <span style="margin-left:auto;font-size:13px">+ 新建分类</span>
+            </div>
+            <div style="flex:1;padding:12px;display:flex;flex-direction:column;gap:8px">
+              <div class="placeholder" style="height:32px">🔍 搜索 + 筛选</div>
+              <div class="placeholder" style="height:48px">☐ 完成待办设计文档 <span style="float:right;color:#f59e0b">中</span></div>
+              <div class="placeholder" style="height:48px">☑ <s>安装开发环境</s></div>
+              <div class="placeholder" style="height:48px">☐ 编写接口测试 <span style="float:right;color:#ef4444">高</span></div>
+              <div class="placeholder" style="height:48px">☐ 部署到服务器 <span style="float:right;color:#10b981">低</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>布局 B：顶部导航式</h3>
+      <p>顶部水平菜单栏做分类切换，下方全宽内容区，适合分类少、专注单项内容。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="centered" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mockup">
+        <div class="mockup-header">布局 C：卡片居中式</div>
+        <div class="mockup-body">
+          <div style="display:flex;flex-direction:column;align-items:center;height:240px;overflow:hidden;padding:12px">
+            <div class="placeholder" style="width:100%;max-width:480px;height:32px;margin-bottom:8px">🔍 搜索 + 📋 筛选分类</div>
+            <div class="placeholder" style="width:100%;max-width:480px;height:48px;margin-bottom:6px">☐ 完成待办设计文档 <span style="float:right;color:#f59e0b">中</span></div>
+            <div class="placeholder" style="width:100%;max-width:480px;height:48px;margin-bottom:6px">☑ <s>安装开发环境</s></div>
+            <div class="placeholder" style="width:100%;max-width:480px;height:48px;margin-bottom:6px">☐ 编写接口测试 <span style="float:right;color:#ef4444">高</span></div>
+            <div class="placeholder" style="width:100%;max-width:480px;height:48px;margin-bottom:6px">☐ 部署到服务器 <span style="float:right;color:#10b981">低</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>布局 C：卡片居中式</h3>
+      <p>无侧边栏，内容居中最大宽度限制，极简聚焦。适合任务量不大、追求简洁的场景。</p>
+    </div>
+  </div>
+</div>

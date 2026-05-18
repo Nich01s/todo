@@ -1,0 +1,264 @@
+<h2>布局 v6 — 环形图左右排布、斜向放大镜、单击触发、本周/今日切换</h2>
+<p class="subtitle">最后一轮细节打磨</p>
+
+<div class="mockup">
+  <div class="mockup-header">仪表盘 v6</div>
+  <div class="mockup-body">
+    <div style="display:flex;gap:14px;">
+
+      <!-- ===== 左侧：日历 50% ===== -->
+      <div style="flex:1;border:1px solid #e5e7eb;border-radius:12px;padding:12px;display:flex;flex-direction:column;background:#fafafa">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <span style="font-size:13px;opacity:0.5;cursor:pointer">◀</span>
+          <span style="font-weight:700;font-size:16px">2026年 5月</span>
+          <span style="font-size:13px;opacity:0.5;cursor:pointer">▶</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;font-size:10px;text-align:center;flex:1">
+          <div style="opacity:0.4;font-weight:600;padding:2px">日</div><div style="opacity:0.4;font-weight:600;padding:2px">一</div><div style="opacity:0.4;font-weight:600;padding:2px">二</div><div style="opacity:0.4;font-weight:600;padding:2px">三</div><div style="opacity:0.4;font-weight:600;padding:2px">四</div><div style="opacity:0.4;font-weight:600;padding:2px">五</div><div style="opacity:0.4;font-weight:600;padding:2px">六</div>
+          <div style="color:#ccc;padding:1px"></div><div style="color:#ccc;padding:1px"></div><div style="color:#ccc;padding:1px"></div><div style="color:#ccc;padding:1px"></div><div style="color:#ccc;padding:1px"></div><div style="color:#ccc;padding:1px"></div>
+
+          <!-- 1号 — 左上角格子，放大镜右下弹出 -->
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative">
+            <div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">1</span><span style="font-size:7px;color:#e63946">劳动节</span></div>
+            <div style="font-size:7px;margin-top:1px;color:#ef4444"><span style="display:inline-block;width:4px;height:4px;border-radius:50%;background:#ef4444;margin-right:1px"></span>聚餐</div>
+            <!-- 放大镜：左上角格子 → 斜右下弹出 -->
+            <div style="display:none;position:absolute;top:calc(100% + 6px);left:0;z-index:100;background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,0.2);padding:16px 18px;min-width:220px">
+              <div style="position:absolute;top:-8px;left:12px;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:8px solid #fff"></div>
+              <div style="font-weight:700;font-size:15px;color:#6366f1;margin-bottom:2px">5月1日 星期五</div>
+              <div style="font-size:10px;color:#e63946;margin-bottom:10px">劳动节 🏖</div>
+              <div style="border-top:1px solid #f0f0f0;padding-top:8px;display:flex;flex-direction:column;gap:4px">
+                <div style="display:flex;align-items:center;gap:6px;font-size:11px;padding:4px 6px;background:#fef2f2;border-radius:4px">
+                  <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#ef4444"></span>
+                  <span>聚餐</span><span style="margin-left:auto;opacity:0.3;font-size:9px">高</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">2</span><span style="font-size:7px;opacity:0.45">初七</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">3</span><span style="font-size:7px;opacity:0.45">初八</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">4</span><span style="font-size:7px;opacity:0.45">初九</span></div></div>
+
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative">
+            <div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">5</span><span style="font-size:7px;opacity:0.45">初十</span></div>
+            <div style="font-size:7px"><span style="display:inline-block;width:4px;height:4px;border-radius:50%;background:#ef4444;margin-right:1px"></span><span style="color:#ef4444">完成设计</span></div>
+            <div style="font-size:7px;color:#6366f1;font-weight:600">+2 更多</div>
+          </div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">6</span><span style="font-size:7px;opacity:0.45">十一</span></div></div>
+
+          <!-- 7号 — 最右列格子，放大镜左上弹出 -->
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative">
+            <div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">7</span><span style="font-size:7px;opacity:0.45">十二</span></div>
+            <!-- 放大镜：右侧格子 → 斜左上弹出 -->
+            <div style="display:none;position:absolute;bottom:calc(100% + 6px);right:0;z-index:100;background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,0.2);padding:16px 18px;min-width:220px">
+              <div style="position:absolute;bottom:-8px;right:12px;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid #fff"></div>
+              <div style="font-weight:700;font-size:15px;margin-bottom:2px">5月7日 星期四</div>
+              <div style="font-size:10px;opacity:0.4;margin-bottom:10px">农历十二</div>
+              <div style="border-top:1px solid #f0f0f0;padding-top:8px;font-size:11px;opacity:0.5">暂无待办事项</div>
+            </div>
+          </div>
+
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">8</span><span style="font-size:7px;opacity:0.45">十三</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">9</span><span style="font-size:7px;opacity:0.45">十四</span></div><div style="font-size:7px"><span style="display:inline-block;width:4px;height:4px;border-radius:50%;background:#f59e0b;margin-right:1px"></span><span style="color:#f59e0b">代码审查</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">10</span><span style="font-size:7px;opacity:0.45">十五</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">11</span><span style="font-size:7px;opacity:0.45">十六</span></div><div style="font-size:7px"><span style="display:inline-block;width:4px;height:4px;border-radius:50%;background:#10b981;margin-right:1px"></span><span style="color:#10b981">整理笔记</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">12</span><span style="font-size:7px;opacity:0.45">十七</span></div><div style="font-size:7px"><span style="display:inline-block;width:4px;height:4px;border-radius:50%;background:#ef4444;margin-right:1px"></span><span style="color:#ef4444">部署上线</span></div><div style="font-size:7px;color:#6366f1;font-weight:600">+1 更多</div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">13</span><span style="font-size:7px;opacity:0.45">十八</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">14</span><span style="font-size:7px;opacity:0.45">十九</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">15</span><span style="font-size:7px;opacity:0.45">二十</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">16</span><span style="font-size:7px;opacity:0.45">廿一</span></div><div style="font-size:7px"><span style="display:inline-block;width:4px;height:4px;border-radius:50%;background:#10b981;margin-right:1px"></span><span style="color:#10b981">买菜</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">17</span><span style="font-size:7px;opacity:0.45">廿二</span></div></div>
+
+          <!-- 18号 今天 — 中间位置，放大镜右上弹出 -->
+          <div style="border:2px solid #6366f1;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#eef2ff;position:relative">
+            <div style="display:flex;justify-content:space-between">
+              <span style="font-weight:700;font-size:11px;color:#6366f1">18</span>
+              <span style="font-size:7px;opacity:0.45">廿三</span>
+            </div>
+            <div style="font-size:7px"><span style="display:inline-block;width:4px;height:4px;border-radius:50%;background:#ef4444;margin-right:1px"></span><span style="color:#ef4444">完成设计</span></div>
+            <div style="font-size:7px"><span style="display:inline-block;width:4px;height:4px;border-radius:50%;background:#f59e0b;margin-right:1px"></span><span style="color:#f59e0b">代码审查</span></div>
+            <div style="font-size:7px"><span style="display:inline-block;width:4px;height:4px;border-radius:50%;background:#10b981;margin-right:1px"></span><span style="color:#10b981">整理笔记</span></div>
+            <!-- 放大镜：中间偏左 → 斜右上弹出 -->
+            <div style="display:none;position:absolute;bottom:calc(100% + 6px);left:0;z-index:100;background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,0.2);padding:16px 18px;min-width:250px">
+              <div style="position:absolute;bottom:-8px;left:12px;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid #fff"></div>
+              <div style="font-weight:700;font-size:15px;color:#6366f1;margin-bottom:2px">5月18日 星期一 · 今天</div>
+              <div style="font-size:10px;opacity:0.4;margin-bottom:10px">农历廿三</div>
+              <div style="border-top:1px solid #f0f0f0;padding-top:8px;display:flex;flex-direction:column;gap:5px">
+                <div style="display:flex;align-items:center;gap:6px;font-size:11px;padding:5px 6px;background:#fef2f2;border-radius:4px">
+                  <span style="width:6px;height:6px;border-radius:50%;background:#ef4444"></span>
+                  <span>完成设计文档</span>
+                  <span style="margin-left:auto;opacity:0.4;font-size:9px">高</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:11px;padding:5px 6px;background:#fffbeb;border-radius:4px">
+                  <span style="width:6px;height:6px;border-radius:50%;background:#f59e0b"></span>
+                  <span>代码审查</span>
+                  <span style="margin-left:auto;opacity:0.4;font-size:9px">中</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:11px;padding:5px 6px;background:#f0fdf4;border-radius:4px">
+                  <span style="width:6px;height:6px;border-radius:50%;background:#10b981"></span>
+                  <span>整理笔记</span>
+                  <span style="margin-left:auto;opacity:0.4;font-size:9px">低</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 31号 — 最下行格子，放大镜左上弹出 -->
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative">
+            <div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">31</span><span style="font-size:7px;color:#e63946">端午</span></div>
+            <div style="font-size:7px"><span style="display:inline-block;width:4px;height:4px;border-radius:50%;background:#ef4444;margin-right:1px"></span><span style="color:#ef4444">买粽子</span></div>
+            <!-- 放大镜：底部格子 → 斜左上弹出 -->
+            <div style="display:none;position:absolute;bottom:calc(100% + 6px);right:0;z-index:100;background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,0.2);padding:16px 18px;min-width:220px">
+              <div style="position:absolute;bottom:-8px;right:12px;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid #fff"></div>
+              <div style="font-weight:700;font-size:15px;margin-bottom:2px">5月31日 星期日</div>
+              <div style="font-size:10px;color:#e63946;margin-bottom:10px">端午节 🎋</div>
+              <div style="border-top:1px solid #f0f0f0;padding-top:8px">
+                <div style="display:flex;align-items:center;gap:6px;font-size:11px;padding:5px 6px;background:#fef2f2;border-radius:4px">
+                  <span style="width:6px;height:6px;border-radius:50%;background:#ef4444"></span>
+                  <span>买粽子</span><span style="margin-left:auto;opacity:0.4;font-size:9px">高</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 填充剩余格子 -->
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">19</span><span style="font-size:7px;opacity:0.45">廿四</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">20</span><span style="font-size:7px;opacity:0.45">廿五</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">21</span><span style="font-size:7px;opacity:0.45">廿六</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">22</span><span style="font-size:7px;opacity:0.45">廿七</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">23</span><span style="font-size:7px;opacity:0.45">廿八</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">24</span><span style="font-size:7px;opacity:0.45">廿九</span></div><div style="font-size:7px"><span style="display:inline-block;width:4px;height:4px;border-radius:50%;background:#f59e0b;margin-right:1px"></span><span style="color:#f59e0b">周报</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">25</span><span style="font-size:7px;opacity:0.45">三十</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">26</span><span style="font-size:7px;opacity:0.45">五月初一</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">27</span><span style="font-size:7px;opacity:0.45">初二</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">28</span><span style="font-size:7px;opacity:0.45">初三</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">29</span><span style="font-size:7px;opacity:0.45">初四</span></div></div>
+          <div style="border:1px solid #e5e7eb;border-radius:4px;padding:2px 3px;font-size:9px;text-align:left;background:#fff;position:relative"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:11px">30</span><span style="font-size:7px;opacity:0.45">初五</span></div></div>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:8px;font-size:10px;opacity:0.5">
+          <span><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#ef4444"></span> 高</span>
+          <span><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#f59e0b"></span> 中</span>
+          <span><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#10b981"></span> 低</span>
+          <span style="margin-left:auto">💡 单击格子弹出放大镜（自适应方向不出界）</span>
+        </div>
+      </div>
+
+      <!-- ===== 右侧 50% ===== -->
+      <div style="flex:1;display:flex;flex-direction:column;gap:12px">
+
+        <!-- 天气 -->
+        <div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px 16px;background:linear-gradient(135deg,#f0f4ff,#f8faff);flex-shrink:0">
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="position:relative;flex-shrink:0;cursor:pointer">
+              <div style="width:28px;height:34px;background:#6366f1;border-radius:50% 50% 50% 50% / 50% 50% 50% 50%;position:relative">
+                <div style="position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:9px solid #6366f1"></div>
+                <div style="position:absolute;top:45%;left:50%;transform:translate(-50%,-50%);width:9px;height:9px;background:#fff;border-radius:50%"></div>
+              </div>
+            </div>
+            <div style="flex-shrink:0"><div style="font-size:36px;line-height:1">⛅</div><div style="font-size:9px;opacity:0.4">多云转晴</div></div>
+            <div style="flex-shrink:0"><div style="font-size:26px;font-weight:300;line-height:1.1">26°</div><div style="font-size:11px;opacity:0.45">湿度 65%</div></div>
+            <div style="font-weight:700;font-size:15px;flex-shrink:0">杭州</div>
+            <div style="width:1px;height:40px;background:rgba(0,0,0,0.08);flex-shrink:0"></div>
+            <div style="display:flex;gap:0;flex:1;justify-content:space-around">
+              <div style="text-align:center"><div style="font-size:10px;opacity:0.45;margin-bottom:2px">明天</div><div style="font-size:20px">☀️</div><div style="font-size:11px;font-weight:600">28°</div><div style="font-size:9px;opacity:0.35">18°</div></div>
+              <div style="text-align:center"><div style="font-size:10px;opacity:0.45;margin-bottom:2px">周三</div><div style="font-size:20px">🌧</div><div style="font-size:11px;font-weight:600">22°</div><div style="font-size:9px;opacity:0.35">17°</div></div>
+              <div style="text-align:center"><div style="font-size:10px;opacity:0.45;margin-bottom:2px">周四</div><div style="font-size:20px">⛅</div><div style="font-size:11px;font-weight:600">25°</div><div style="font-size:9px;opacity:0.35">16°</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 任务完成率 — 左大右小 + 环形左右排布 + 点击切换 -->
+        <div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#fafafa;flex:1;display:flex;gap:14px;overflow:hidden">
+          <!-- 左侧：双环形左右排列（较大） -->
+          <div style="flex:1.3;display:flex;align-items:center;justify-content:center;gap:20px">
+            <!-- 今日 — 当前选中态（高亮边框） -->
+            <div style="text-align:center;cursor:pointer;padding:8px 14px;border-radius:10px;border:2px solid #6366f1;background:#eef2ff;transition:all 0.2s;position:relative" title="今日详情（已选中）">
+              <div style="position:absolute;top:-6px;right:-6px;width:16px;height:16px;background:#6366f1;border-radius:50%;font-size:9px;color:#fff;display:flex;align-items:center;justify-content:center">✓</div>
+              <svg width="76" height="76" viewBox="0 0 90 90">
+                <circle cx="45" cy="45" r="35" fill="none" stroke="#eee" stroke-width="7"/>
+                <circle cx="45" cy="45" r="35" fill="none" stroke="#6366f1" stroke-width="7" stroke-dasharray="220" stroke-dashoffset="88" stroke-linecap="round" transform="rotate(-90 45 45)"/>
+              </svg>
+              <div style="position:absolute;top:54%;left:50%;transform:translate(-50%,-50%);font-size:16px;font-weight:700;color:#6366f1">2/5</div>
+              <div style="font-size:11px;opacity:0.7;margin-top:6px;font-weight:600">今日</div>
+            </div>
+            <!-- 本周 — 未选中 -->
+            <div style="text-align:center;cursor:pointer;padding:8px 14px;border-radius:10px;border:2px solid #e5e7eb;background:#fff;transition:all 0.2s" title="点击查看本周汇总">
+              <svg width="76" height="76" viewBox="0 0 90 90">
+                <circle cx="45" cy="45" r="35" fill="none" stroke="#eee" stroke-width="7"/>
+                <circle cx="45" cy="45" r="35" fill="none" stroke="#10b981" stroke-width="7" stroke-dasharray="220" stroke-dashoffset="55" stroke-linecap="round" transform="rotate(-90 45 45)"/>
+              </svg>
+              <div style="position:absolute;top:54%;left:50%;transform:translate(-50%,-50%);font-size:16px;font-weight:700;color:#10b981">8/20</div>
+              <div style="font-size:11px;opacity:0.7;margin-top:6px">本周</div>
+            </div>
+          </div>
+
+          <!-- 右侧：任务详情（今日选中态） -->
+          <div style="flex:1;background:#fff;border-radius:8px;border:1px solid #e5e7eb;padding:10px;overflow-y:auto;font-size:10px">
+            <div style="font-weight:600;font-size:11px;margin-bottom:8px;color:#6366f1">📋 今日</div>
+            <div style="margin-bottom:6px">
+              <div style="font-size:9px;opacity:0.4;margin-bottom:3px">✅ 已完成 (2)</div>
+              <div style="display:flex;align-items:center;gap:4px;padding:3px 6px;background:#f0fdf4;border-radius:3px;margin-bottom:3px">
+                <span style="width:5px;height:5px;border-radius:50%;background:#10b981"></span>
+                <span style="text-decoration:line-through;opacity:0.6">环境搭建</span>
+                <span style="margin-left:auto;font-size:8px;opacity:0.3">低</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:4px;padding:3px 6px;background:#fffbeb;border-radius:3px;margin-bottom:3px">
+                <span style="width:5px;height:5px;border-radius:50%;background:#f59e0b"></span>
+                <span style="text-decoration:line-through;opacity:0.6">代码审查</span>
+                <span style="margin-left:auto;font-size:8px;opacity:0.3">中</span>
+              </div>
+            </div>
+            <div style="margin-bottom:6px">
+              <div style="font-size:9px;opacity:0.4;margin-bottom:3px">⏳ 待完成 (3)</div>
+              <div style="display:flex;align-items:center;gap:4px;padding:3px 6px;background:#fef2f2;border-radius:3px;margin-bottom:3px">
+                <span style="width:5px;height:5px;border-radius:50%;background:#ef4444"></span><span style="color:#ef4444">完成设计文档</span>
+                <span style="margin-left:auto;font-size:8px;opacity:0.3">高</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:4px;padding:3px 6px;background:#fef2f2;border-radius:3px;margin-bottom:3px">
+                <span style="width:5px;height:5px;border-radius:50%;background:#ef4444"></span><span>部署上线</span>
+                <span style="margin-left:auto;font-size:8px;opacity:0.3">高</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:4px;padding:3px 6px;background:#f0fdf4;border-radius:3px;margin-bottom:3px">
+                <span style="width:5px;height:5px;border-radius:50%;background:#10b981"></span><span>整理笔记</span>
+                <span style="margin-left:auto;font-size:8px;opacity:0.3">低</span>
+              </div>
+            </div>
+            <div style="font-size:8px;opacity:0.3;text-align:center;margin-top:4px">👆 点击「本周」切换汇总</div>
+          </div>
+        </div>
+
+        <!-- 快速添加 -->
+        <div style="border:1px solid #e5e7eb;border-radius:12px;padding:12px;background:#fff;flex-shrink:0">
+          <div style="display:flex;gap:8px;align-items:center">
+            <input class="mock-input" placeholder="输入新的待办事项..." style="flex:1;font-size:14px;padding:10px">
+            <button class="mock-button" style="background:#6366f1;color:#fff;padding:10px 18px;font-size:14px">添加</button>
+          </div>
+          <div style="margin-top:6px;font-size:11px;opacity:0.3;text-align:center">点击"添加"后弹出：📅 截止日期 / 🏷 分类 / ⚡ 优先级</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:16px">
+  <h3>v6 变更摘要</h3>
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>本轮调整</h4>
+      <ul>
+        <li>今日/本周环形图改为左右排列，当前选中项显示紫色高亮边框+✓标记</li>
+        <li>放大镜浮层按格子位置自适应方向：左上角格子→右下弹出(1号)，右侧格子→左上弹出(7号)，中间格子→右上弹出(18号)，底部格子→左上弹出(31号)</li>
+        <li>放大镜触发方式改为单击</li>
+        <li>点击「今日」环形图，右侧显示今日已完成/待完成分类；点击「本周」则替换为本週汇总</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>确认 & 下一步</h4>
+      <ul>
+        <li>布局是否基本满意了？</li>
+        <li>如果 OK，我将关闭视觉伴侣，进入方案设计文档编写阶段。</li>
+      </ul>
+    </div>
+  </div>
+</div>

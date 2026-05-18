@@ -1,0 +1,131 @@
+<h2>你的布局方案 — 这样理解对吗？</h2>
+<p class="subtitle">左侧日历 + 右侧天气/统计/输入</p>
+
+<div class="mockup">
+  <div class="mockup-header">仪表盘布局预览</div>
+  <div class="mockup-body">
+    <div style="display:flex;gap:12px;min-height:420px">
+
+      <!-- 左侧：日历 50% -->
+      <div style="flex:1;border:1px solid var(--border, #e5e7eb);border-radius:8px;padding:10px;display:flex;flex-direction:column">
+        <div style="font-weight:600;margin-bottom:8px;display:flex;justify-content:space-between">
+          <span>2026年5月</span>
+          <span style="opacity:0.5">◀ ▶</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;font-size:11px;text-align:center;flex:1">
+          <div style="opacity:0.5">日</div><div style="opacity:0.5">一</div><div style="opacity:0.5">二</div><div style="opacity:0.5">三</div><div style="opacity:0.5">四</div><div style="opacity:0.5">五</div><div style="opacity:0.5">六</div>
+          <div></div><div></div><div></div><div></div><div></div><div></div><div style="border:1px solid #ddd;padding:2px">1</div>
+          <div style="border:1px solid #ddd;padding:2px">2</div>
+          <div style="border:1px solid #ddd;padding:2px">3</div>
+          <div style="border:1px solid #ddd;padding:2px">4</div>
+          <div style="border:1px solid #ddd;padding:2px">5</div>
+          <div style="border:1px solid #ddd;padding:2px">6</div>
+          <div style="border:1px solid #ddd;padding:2px">7</div>
+          <div style="border:1px solid #ddd;padding:2px">8</div>
+          <div style="border:1px solid #ddd;padding:2px">9</div>
+          <div style="border:1px solid #ddd;padding:2px">10</div>
+          <div style="border:1px solid #ddd;padding:2px">11</div>
+          <div style="border:1px solid #ddd;padding:2px">12</div>
+          <div style="border:1px solid #ddd;padding:2px">13</div>
+          <div style="border:1px solid #ddd;padding:2px">14</div>
+          <div style="border:1px solid #ddd;padding:2px">15</div>
+          <div style="border:1px solid #ddd;padding:2px">16</div>
+          <div style="border:1px solid #ddd;padding:2px">17</div>
+          <div style="border:2px solid #6366f1;padding:2px;background:#eef2ff">18</div>
+          <div style="border:1px solid #ddd;padding:2px">19</div>
+          <div style="border:1px solid #ddd;padding:2px">20</div>
+          <div style="border:1px solid #ddd;padding:2px">21</div>
+          <div style="border:1px solid #ddd;padding:2px">22</div>
+          <div style="border:1px solid #ddd;padding:2px">23</div>
+          <div style="border:1px solid #ddd;padding:2px">24</div>
+          <div style="border:1px solid #ddd;padding:2px">25</div>
+          <div style="border:1px solid #ddd;padding:2px">26</div>
+          <div style="border:1px solid #ddd;padding:2px">27</div>
+          <div style="border:1px solid #ddd;padding:2px">28</div>
+          <div style="border:1px solid #ddd;padding:2px">29</div>
+          <div style="border:1px solid #ddd;padding:2px">30</div>
+          <div style="border:1px solid #ddd;padding:2px">31</div>
+        </div>
+        <div style="margin-top:8px;font-size:11px;border-top:1px solid #eee;padding-top:6px">
+          <div style="font-weight:600;margin-bottom:3px">5月18日（今天）</div>
+          <div style="margin-bottom:1px"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#ef4444;margin-right:4px"></span>完成设计文档</div>
+          <div style="margin-bottom:1px"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#f59e0b;margin-right:4px"></span>代码审查</div>
+          <div style="margin-bottom:1px"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#10b981;margin-right:4px"></span>整理笔记</div>
+        </div>
+      </div>
+
+      <!-- 右侧：天气 + 统计 + 输入 50% -->
+      <div style="flex:1;display:flex;flex-direction:column;gap:10px">
+
+        <!-- 天气 -->
+        <div style="border:1px solid #e5e7eb;border-radius:8px;padding:12px;display:flex;align-items:center;gap:16px">
+          <div style="font-size:36px">⛅</div>
+          <div>
+            <div style="font-weight:600;font-size:18px">杭州 26°C</div>
+            <div style="opacity:0.6;font-size:13px">多云转晴 · 湿度 65%</div>
+          </div>
+          <div style="margin-left:auto;font-size:12px;opacity:0.5;cursor:pointer">📍 切换城市</div>
+        </div>
+
+        <!-- 统计 -->
+        <div style="border:1px solid #e5e7eb;border-radius:8px;padding:12px;flex:1">
+          <div style="font-weight:600;margin-bottom:8px">📊 任务统计</div>
+          <div style="margin-bottom:8px">
+            <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:3px">
+              <span>今日完成率</span><span>2/5 (40%)</span>
+            </div>
+            <div style="height:6px;background:#eee;border-radius:3px">
+              <div style="width:40%;height:100%;background:#6366f1;border-radius:3px"></div>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:3px">
+              <span>本周完成率</span><span>8/20 (40%)</span>
+            </div>
+            <div style="height:6px;background:#eee;border-radius:3px">
+              <div style="width:40%;height:100%;background:#10b981;border-radius:3px"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 输入框 -->
+        <div style="border:1px solid #6366f1;border-radius:8px;padding:10px;background:#f8f9ff">
+          <div style="display:flex;gap:8px;align-items:center">
+            <input class="mock-input" placeholder="添加新待办事项..." style="flex:1">
+            <button class="mock-button" style="background:#6366f1;color:#fff">添加</button>
+          </div>
+          <div style="display:flex;gap:12px;margin-top:6px;font-size:11px;opacity:0.6">
+            <span>📅 截止日期</span>
+            <span>🏷 分类</span>
+            <span>⚡ 优先级</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:16px">
+  <h3>布局要点确认</h3>
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>你描述的特征</h4>
+      <ul>
+        <li>左侧日历占约 50%，每日简短事项按红/黄/绿显示优先级</li>
+        <li>今日事项详情列在日历下方</li>
+        <li>右侧顶部天气，支持手动切换城市</li>
+        <li>右侧中部进度条（今日/本周完成率）</li>
+        <li>右侧底部快速添加输入栏</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>需要确认</h4>
+      <ul>
+        <li>日历格子较小，长句能否简化为关键词+色点？</li>
+        <li>天气 Widget 是否需要多日预报？</li>
+        <li>月视图自适应时是否需要支持周/日视图切换？</li>
+      </ul>
+    </div>
+  </div>
+</div>
