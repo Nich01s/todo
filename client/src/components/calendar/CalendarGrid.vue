@@ -14,6 +14,7 @@
 
 <script setup>
 import { computed } from 'vue'
+import { Solar } from 'lunar-javascript'
 import DayCell from './DayCell.vue'
 
 const props = defineProps({ year: Number, month: Number, todos: Array })
@@ -21,24 +22,51 @@ defineEmits(['dayClick'])
 
 const dayHeaders = ['日', '一', '二', '三', '四', '五', '六']
 
-// Simplified Chinese lunar calendar
 const LUNAR_MONTH = ['正','二','三','四','五','六','七','八','九','十','冬','腊']
-const LUNAR_DAY = ['一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十','廿一','廿二','廿三','廿四','廿五','廿六','廿七','廿八','廿九','三十']
-const CHINESE_HOLIDAYS = {
+const LUNAR_DAY = ['一','二','三','四','五','六','七','八','九','十','十一','十二',
+  '十三','十四','十五','十六','十七','十八','十九','二十','廿一','廿二','廿三',
+  '廿四','廿五','廿六','廿七','廿八','廿九','三十']
+
+// Solar calendar holidays (solar date key: "month-day")
+const SOLAR_HOLIDAYS = {
   '1-1': '元旦', '2-14': '情人节', '3-8': '妇女节',
-  '4-1': '愚人节', '4-5': '清明', '5-1': '劳动节',
-  '5-4': '青年节', '6-1': '儿童节', '7-1': '建党',
-  '8-1': '建军', '9-10': '教师', '10-1': '国庆节',
-  '10-31': '万圣节', '12-25': '圣诞'
+  '4-5': '清明', '5-1': '劳动节', '5-4': '青年节',
+  '6-1': '儿童节', '7-1': '建党', '8-1': '建军',
+  '9-10': '教师', '10-1': '国庆节', '10-31': '万圣节', '12-25': '圣诞'
 }
 
-// 简化农历显示（精确农历需集成 lunar-javascript 库）
+// Lunar calendar holidays (lunar date key: "month-day-lunar")
+const LUNAR_HOLIDAYS = {
+  '1-1-lunar': '春节', '1-15-lunar': '元宵',
+  '5-5-lunar': '端午', '7-7-lunar': '七夕',
+  '8-15-lunar': '中秋', '9-9-lunar': '重阳',
+  '12-30-lunar': '除夕'
+}
+
 function getLunarOrHoliday(d) {
-  const key = `${props.month}-${d.getDate()}`
-  if (CHINESE_HOLIDAYS[key]) return CHINESE_HOLIDAYS[key]
-  const lunarDay = ((d.getDate() - 1) % 30)
-  const lunarMonth = (props.month - 1) % 12
-  return LUNAR_MONTH[lunarMonth] + '月' + LUNAR_DAY[lunarDay]
+  const month = d.getMonth() + 1
+  const day = d.getDate()
+
+  // Check solar holidays first
+  const solarKey = `${month}-${day}`
+  if (SOLAR_HOLIDAYS[solarKey]) return SOLAR_HOLIDAYS[solarKey]
+
+  // Get real lunar date
+  try {
+    const solar = Solar.fromYmd(d.getFullYear(), month, day)
+    const lunar = solar.getLunar()
+    const lunarMonth = lunar.getMonth()
+    const lunarDay = lunar.getDay()
+
+    // Check lunar holidays
+    const lunarKey = `${lunarMonth}-${lunarDay}-lunar`
+    if (LUNAR_HOLIDAYS[lunarKey]) return LUNAR_HOLIDAYS[lunarKey]
+
+    // Return lunar month/day text
+    return LUNAR_MONTH[lunarMonth - 1] + '月' + LUNAR_DAY[lunarDay - 1]
+  } catch (e) {
+    return month + '/' + day
+  }
 }
 
 function todosForDay(day) {
