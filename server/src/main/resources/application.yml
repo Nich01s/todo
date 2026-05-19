@@ -21,7 +21,7 @@ mybatis-plus:
 
 app:
   jwt:
-    secret: your-jwt-secret-key-must-be-at-least-256-bits-long-please-change-me
+    secret: ${JWT_SECRET:your-jwt-secret-key-must-be-at-least-256-bits-long-please-change-me}
     access-expiration: 900000
     refresh-expiration: 604800000
   upload:
