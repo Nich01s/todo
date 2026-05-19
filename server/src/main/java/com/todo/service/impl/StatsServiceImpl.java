@@ -32,6 +32,8 @@ public class StatsServiceImpl implements StatsService {
         return calcStats(userId, weekStart, today);
     }
 
+    // Note: Only counts todos with explicit dueDate set, as stats represent scheduled workload.
+    // Todos without dueDate are not included in daily/weekly calculations.
     private StatsResponse calcStats(Long userId, LocalDate from, LocalDate to) {
         LambdaQueryWrapper<Todo> wrapper = new LambdaQueryWrapper<Todo>()
                 .eq(Todo::getUserId, userId)

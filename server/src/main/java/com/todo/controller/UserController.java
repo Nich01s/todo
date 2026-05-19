@@ -5,6 +5,7 @@ import com.todo.dto.UserProfileRequest;
 import com.todo.entity.User;
 import com.todo.service.UserService;
 import com.todo.util.FileUploadUtil;
+import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,7 +29,7 @@ public class UserController {
     }
 
     @PutMapping("/profile")
-    public Result<User> updateProfile(Authentication auth, @RequestBody UserProfileRequest request) {
+    public Result<User> updateProfile(Authentication auth, @Valid @RequestBody UserProfileRequest request) {
         Long userId = (Long) auth.getPrincipal();
         return Result.success(userService.updateProfile(userId, request.getUsername()));
     }
