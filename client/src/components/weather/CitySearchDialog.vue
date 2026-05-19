@@ -19,7 +19,7 @@ const emit = defineEmits(['select', 'close'])
 const keyword = ref('')
 const results = ref([])
 
-const API_KEY = 'YOUR_HEFENG_API_KEY'
+const API_KEY = import.meta.env.VITE_HEFENG_API_KEY || ''
 
 async function search() {
   if (!keyword.value) { results.value = []; return }

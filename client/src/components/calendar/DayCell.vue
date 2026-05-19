@@ -16,6 +16,7 @@
 
 <script setup>
 import { computed, ref } from 'vue'
+import { priorityClass } from '../../utils/priority.js'
 
 const props = defineProps({ day: Object, todos: Array })
 const emit = defineEmits(['click'])
@@ -23,12 +24,6 @@ const cellRef = ref(null)
 const maxVisible = 2
 
 const visibleTodos = computed(() => props.todos?.slice(0, maxVisible) || [])
-
-function priorityClass(p) {
-  if (p === 2) return 'high'
-  if (p === 1) return 'mid'
-  return 'low'
-}
 
 function handleClick() {
   if (!props.day) return
@@ -39,7 +34,7 @@ function handleClick() {
 <style scoped>
 .day-cell {
   border: 1px solid var(--border-color);
-  border-radius: 4px;
+  border-radius: var(--radius);
   padding: 2px 3px;
   font-size: 9px;
   text-align: left;

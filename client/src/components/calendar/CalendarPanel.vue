@@ -1,6 +1,7 @@
 <template>
   <div class="calendar-panel">
     <MonthNav :current="current" @prev="prevMonth" @next="nextMonth" />
+    <div class="cal-error" v-if="error">{{ error }}</div>
     <CalendarGrid :year="current.year" :month="current.month" :todos="todos" @dayClick="onDayClick" />
     <MagnifierPopup v-if="selectedDay" :day="selectedDay" :todos="selectedTodos" :position="popPos"
                     @close="selectedDay = null" />
@@ -18,6 +19,7 @@ const current = ref({ year: new Date().getFullYear(), month: new Date().getMonth
 const todos = ref([])
 const selectedDay = ref(null)
 const popPos = ref('top-right')
+const error = ref('')
 
 function prevMonth() {
   if (current.value.month === 1) { current.value.month = 12; current.value.year-- }
@@ -48,13 +50,17 @@ async function loadTodos() {
   try {
     const res = await getTodos({ sort: 'due_date', page: 1, size: 200 })
     todos.value = res.data.data.records || []
-  } catch (e) { console.error('加载待办失败', e) }
+  } catch (e) {
+    error.value = '加载待办失败'
+    console.error('加载待办失败', e)
+  }
 }
 
 onMounted(loadTodos)
 </script>
 
 <style scoped>
+.cal-error { padding: 8px 12px; background: rgba(239,68,68,0.1); color: var(--danger); border-radius: var(--radius); font-size: 13px; margin-bottom: 8px; }
 .calendar-panel {
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);

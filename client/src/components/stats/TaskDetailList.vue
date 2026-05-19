@@ -20,16 +20,11 @@
 
 <script setup>
 import { computed } from 'vue'
+import { priorityClass } from '../../utils/priority.js'
 
 const props = defineProps({ todos: Array, title: String, titleColor: { type: String, default: '#6366f1' } })
 const completedList = computed(() => props.todos.filter(t => t.completed === 1))
 const pendingList = computed(() => props.todos.filter(t => t.completed !== 1))
-
-function priorityClass(p) {
-  if (p === 2) return 'high'
-  if (p === 1) return 'mid'
-  return 'low'
-}
 </script>
 
 <style scoped>

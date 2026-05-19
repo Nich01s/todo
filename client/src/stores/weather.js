@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-const API_KEY = 'YOUR_HEFENG_API_KEY'
+// 和风天气 API Key — 使用前请替换为你的 Key（免费注册: https://dev.qweather.com/）
+const API_KEY = import.meta.env.VITE_HEFENG_API_KEY || ''
 
 export const useWeatherStore = defineStore('weather', () => {
   const city = ref(localStorage.getItem('weatherCity') || '杭州')

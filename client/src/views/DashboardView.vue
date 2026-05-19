@@ -1,9 +1,9 @@
 <template>
   <div class="dashboard">
-    <CalendarPanel class="dash-left" />
+    <CalendarPanel class="dash-left" :key="'cal-' + refreshKey" />
     <div class="dash-right">
       <WeatherWidget />
-      <StatsCard />
+      <StatsCard :key="'stats-' + refreshKey" />
       <QuickAddBar @added="refresh" />
     </div>
   </div>

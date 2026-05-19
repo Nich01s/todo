@@ -1,6 +1,7 @@
 <template>
   <div class="stats-card">
-    <div class="stats-body">
+    <div class="stats-loading" v-if="loading">加载中...</div>
+    <div class="stats-body" v-else>
       <div class="stats-left">
         <RingChart :completed="todayCompleted" :total="todayTotal" label="今日完成"
                    title="今日进度" :subtitle="`已完成 ${todayRate}%`" progressColor="#6366f1" subColor="#6366f1"
@@ -24,6 +25,7 @@ import TaskDetailList from './TaskDetailList.vue'
 
 const activeTab = ref('today')
 const allTodos = ref([])
+const loading = ref(true)
 
 const todayStr = new Date().toISOString().slice(0, 10)
 const todayTodos = computed(() => allTodos.value.filter(t => t.dueDate === todayStr))
@@ -49,7 +51,7 @@ onMounted(async () => {
   try {
     const res = await getTodos({ sort: 'due_date', page: 1, size: 200 })
     allTodos.value = res.data.data.records || []
-  } catch (e) { console.error('加载统计数据失败', e) }
+  } catch (e) { console.error('加载统计数据失败', e) } finally { loading.value = false }
 })
 </script>
 

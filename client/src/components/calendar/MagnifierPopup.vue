@@ -15,19 +15,17 @@
 </template>
 
 <script setup>
+import { priorityClass } from '../../utils/priority.js'
+
 defineProps({ day: Object, todos: Array, position: { type: String, default: 'top-right' } })
 defineEmits(['close'])
-
-function priorityClass(p) {
-  if (p === 2) return 'high'
-  if (p === 1) return 'mid'
-  return 'low'
-}
 </script>
 
 <style scoped>
 .magnifier-backdrop { position: fixed; inset: 0; z-index: 1000; background: transparent; }
-.magnifier { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-popup); padding: 16px 18px; min-width: 240px; max-width: 320px; }
+.magnifier { position: absolute; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-popup); padding: 16px 18px; min-width: 240px; max-width: 320px; }
+.magnifier.top-right { bottom: calc(100% + 8px); left: 0; }
+.magnifier.top-left { bottom: calc(100% + 8px); right: 0; }
 .mag-date { font-weight: 700; font-size: 15px; color: var(--brand-color); margin-bottom: 8px; }
 .mag-todos { display: flex; flex-direction: column; gap: 5px; }
 .mag-item { display: flex; align-items: center; gap: 6px; font-size: 12px; padding: 5px 6px; border-radius: 4px; background: var(--bg-secondary); }
