@@ -48,7 +48,7 @@ const activeTodos = computed(() => activeTab.value === 'today' ? todayTodos.valu
 function switchTo(tab) { activeTab.value = tab }
 
 onMounted(() => {
-  if (todoStore.all.length === 0) todoStore.fetchAll()
+  if (!todoStore.initialized) todoStore.fetchAll()
 })
 </script>
 

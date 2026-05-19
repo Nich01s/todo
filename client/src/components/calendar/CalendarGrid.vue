@@ -63,7 +63,9 @@ function getLunarOrHoliday(d) {
     if (LUNAR_HOLIDAYS[lunarKey]) return LUNAR_HOLIDAYS[lunarKey]
 
     // Return lunar month/day text
-    return LUNAR_MONTH[lunarMonth - 1] + '月' + LUNAR_DAY[lunarDay - 1]
+    const lm = Math.abs(lunarMonth)
+    const prefix = lunarMonth < 0 ? '闰' : ''
+    return prefix + LUNAR_MONTH[lm - 1] + '月' + LUNAR_DAY[lunarDay - 1]
   } catch (e) {
     return month + '/' + day
   }

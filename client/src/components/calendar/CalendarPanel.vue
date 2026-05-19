@@ -47,7 +47,7 @@ function onDayClick(day, rect) {
 }
 
 onMounted(() => {
-  if (todoStore.all.length === 0) todoStore.fetchAll()
+  if (!todoStore.initialized) todoStore.fetchAll()
 })
 </script>
 
