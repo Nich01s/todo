@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import * as authApi from '../api/auth'
 import * as userApi from '../api/user'
+import { useTodoStore } from './todos'
 
 export const useAuthStore = defineStore('auth', () => {
   const user = ref(null)
@@ -50,6 +51,7 @@ export const useAuthStore = defineStore('auth', () => {
     localStorage.removeItem('refreshToken')
     isLoggedIn.value = false
     user.value = null
+    useTodoStore().reset()
   }
 
   return { user, isLoggedIn, init, loginAction, registerAction, logoutAction, loadProfile }
