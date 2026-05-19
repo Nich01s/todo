@@ -42,7 +42,7 @@ public class TodoController {
 
     @PutMapping("/{id}")
     public Result<Todo> update(Authentication auth, @PathVariable Long id,
-                                @RequestBody TodoUpdateRequest request) {
+                                @Valid @RequestBody TodoUpdateRequest request) {
         Long userId = (Long) auth.getPrincipal();
         return Result.success(todoService.update(userId, id, request));
     }

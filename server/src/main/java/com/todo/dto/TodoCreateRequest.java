@@ -1,5 +1,7 @@
 package com.todo.dto;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -11,6 +13,8 @@ public class TodoCreateRequest {
     @Size(max = 200, message = "标题不能超过200字")
     private String title;
     private String description;
+    @Min(0)
+    @Max(2)
     private Integer priority;
     private LocalDate dueDate;
     private Long categoryId;

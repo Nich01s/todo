@@ -9,6 +9,7 @@ import com.todo.mapper.RefreshTokenMapper;
 import com.todo.mapper.UserMapper;
 import com.todo.security.JwtTokenProvider;
 import com.todo.service.AuthService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,9 @@ public class AuthServiceImpl implements AuthService {
     private final RefreshTokenMapper refreshTokenMapper;
     private final JwtTokenProvider jwtTokenProvider;
     private final PasswordEncoder passwordEncoder;
+
+    @Value("${app.jwt.refresh-expiration}")
+    private long refreshExpiration;
 
     public AuthServiceImpl(UserMapper userMapper, RefreshTokenMapper refreshTokenMapper,
                            JwtTokenProvider jwtTokenProvider, PasswordEncoder passwordEncoder) {
@@ -83,7 +87,7 @@ public class AuthServiceImpl implements AuthService {
         RefreshToken rt = new RefreshToken();
         rt.setUserId(user.getId());
         rt.setToken(refreshTokenStr);
-        rt.setExpiresAt(LocalDateTime.now().plusSeconds(604800));
+        rt.setExpiresAt(LocalDateTime.now().plusSeconds(refreshExpiration / 1000));
         refreshTokenMapper.insert(rt);
         return new LoginResponse(accessToken, refreshTokenStr, user.getId(), user.getUsername(), user.getAvatar());
     }

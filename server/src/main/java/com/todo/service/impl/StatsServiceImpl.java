@@ -35,10 +35,14 @@ public class StatsServiceImpl implements StatsService {
     private StatsResponse calcStats(Long userId, LocalDate from, LocalDate to) {
         LambdaQueryWrapper<Todo> wrapper = new LambdaQueryWrapper<Todo>()
                 .eq(Todo::getUserId, userId)
-                .ge(Todo::getCreatedAt, from.atStartOfDay())
-                .le(Todo::getCreatedAt, to.atTime(LocalTime.MAX));
+                .ge(Todo::getDueDate, from)
+                .le(Todo::getDueDate, to);
         long total = todoMapper.selectCount(wrapper);
-        wrapper.eq(Todo::getCompleted, 1);
+        wrapper = new LambdaQueryWrapper<Todo>()
+                .eq(Todo::getUserId, userId)
+                .eq(Todo::getCompleted, 1)
+                .ge(Todo::getDueDate, from)
+                .le(Todo::getDueDate, to);
         long completed = todoMapper.selectCount(wrapper);
         double rate = total > 0 ? (double) completed / total : 0.0;
         return new StatsResponse(completed, total, rate);
