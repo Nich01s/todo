@@ -1,6 +1,6 @@
 <template>
   <div class="stats-card">
-    <div class="stats-loading" v-if="loading">加载中...</div>
+    <div class="stats-loading" v-if="todoStore.loading">加载中...</div>
     <div class="stats-body" v-else>
       <div class="stats-left">
         <RingChart :completed="todayCompleted" :total="todayTotal" label="今日完成"
@@ -19,13 +19,13 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { getTodos } from '../../api/todos'
+import { useTodoStore } from '../../stores/todos'
 import RingChart from './RingChart.vue'
 import TaskDetailList from './TaskDetailList.vue'
 
+const todoStore = useTodoStore()
 const activeTab = ref('today')
-const allTodos = ref([])
-const loading = ref(true)
+const allTodos = computed(() => todoStore.all)
 
 const todayStr = new Date().toISOString().slice(0, 10)
 const todayTodos = computed(() => allTodos.value.filter(t => t.dueDate === todayStr))
@@ -47,11 +47,8 @@ const activeTodos = computed(() => activeTab.value === 'today' ? todayTodos.valu
 
 function switchTo(tab) { activeTab.value = tab }
 
-onMounted(async () => {
-  try {
-    const res = await getTodos({ sort: 'due_date', page: 1, size: 200 })
-    allTodos.value = res.data.data.records || []
-  } catch (e) { console.error('加载统计数据失败', e) } finally { loading.value = false }
+onMounted(() => {
+  if (todoStore.all.length === 0) todoStore.fetchAll()
 })
 </script>
 

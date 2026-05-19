@@ -1,7 +1,7 @@
 <template>
   <div class="calendar-panel">
     <MonthNav :current="current" @prev="prevMonth" @next="nextMonth" />
-    <div class="cal-error" v-if="error">{{ error }}</div>
+    <div class="cal-error" v-if="todoStore.error">{{ todoStore.error }}</div>
     <CalendarGrid :year="current.year" :month="current.month" :todos="todos" @dayClick="onDayClick" />
     <MagnifierPopup v-if="selectedDay" :day="selectedDay" :todos="selectedTodos" :position="popPos"
                     @close="selectedDay = null" />
@@ -10,26 +10,26 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { getTodos } from '../../api/todos'
+import { useTodoStore } from '../../stores/todos'
 import MonthNav from './MonthNav.vue'
 import CalendarGrid from './CalendarGrid.vue'
 import MagnifierPopup from './MagnifierPopup.vue'
 
+const todoStore = useTodoStore()
 const current = ref({ year: new Date().getFullYear(), month: new Date().getMonth() + 1 })
-const todos = ref([])
+const todos = computed(() => todoStore.all)
 const selectedDay = ref(null)
 const popPos = ref('top-right')
-const error = ref('')
 
 function prevMonth() {
   if (current.value.month === 1) { current.value.month = 12; current.value.year-- }
   else current.value.month--
-  loadTodos()
+  todoStore.fetchAll()
 }
 function nextMonth() {
   if (current.value.month === 12) { current.value.month = 1; current.value.year++ }
   else current.value.month++
-  loadTodos()
+  todoStore.fetchAll()
 }
 
 const selectedTodos = computed(() => {
@@ -46,17 +46,9 @@ function onDayClick(day, rect) {
   else popPos.value = 'top-right'
 }
 
-async function loadTodos() {
-  try {
-    const res = await getTodos({ sort: 'due_date', page: 1, size: 200 })
-    todos.value = res.data.data.records || []
-  } catch (e) {
-    error.value = '加载待办失败'
-    console.error('加载待办失败', e)
-  }
-}
-
-onMounted(loadTodos)
+onMounted(() => {
+  if (todoStore.all.length === 0) todoStore.fetchAll()
+})
 </script>
 
 <style scoped>
