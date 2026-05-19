@@ -44,6 +44,7 @@ public class TodoServiceImpl implements TodoService {
         todo.setPriority(request.getPriority() != null ? request.getPriority() : 1);
         todo.setDueDate(request.getDueDate());
         todo.setCategoryId(request.getCategoryId());
+        todo.setCompleted(0);
         todoMapper.insert(todo);
         return todo;
     }
